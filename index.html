@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Aniversario ❤️</title><style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+overflow:hidden;
+background:#2b000d;
+color:white;
+}
+
+.page{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+transition:1.2s ease;
+overflow:hidden;
+}
+
+#inicio{
+background:linear-gradient(135deg,#65001d,#ff85b3);
+}
+
+#mensaje{
+background:linear-gradient(135deg,#420012,#ff9dc8);
+transform:translateX(100%);
+padding:20px;
+}
+
+h1{
+text-align:center;
+}
+
+.boton-principal{
+padding:25px 45px;
+font-size:2rem;
+font-weight:bold;
+border:none;
+border-radius:30px;
+cursor:pointer;
+background:white;
+color:#8b0030;
+box-shadow:0 0 30px rgba(255,255,255,.7);
+transition:.3s;
+z-index:10;
+}
+
+.boton-principal:hover{
+transform:scale(1.05);
+}
+
+.carta{
+max-width:850px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(10px);
+padding:35px;
+border-radius:25px;
+text-align:center;
+line-height:1.8;
+font-size:1.3rem;
+}
+
+.contador{
+margin-bottom:25px;
+font-size:1.4rem;
+font-weight:bold;
+}
+
+.drive{
+position:absolute;
+bottom:25px;
+left:25px;
+text-decoration:none;
+color:white;
+background:#ff4f93;
+padding:15px 25px;
+border-radius:20px;
+font-weight:bold;
+box-shadow:0 0 15px rgba(255,255,255,.4);
+}
+
+.petalo,
+.corazon,
+.brillo{
+position:absolute;
+pointer-events:none;
+}
+
+.petalo{
+animation:caer linear infinite;
+}
+
+.corazon{
+animation:flotar linear infinite;
+}
+
+.brillo{
+animation:brillar 2s infinite;
+}
+
+@keyframes caer{
+0%{
+transform:translateY(-50px) rotate(0deg);
+opacity:1;
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
+
+@keyframes flotar{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+20%{
+opacity:1;
+}
+100%{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+
+@keyframes brillar{
+50%{
+transform:scale(1.8);
+opacity:.4;
+}
+}
+
+.youtube{
+position:absolute;
+width:1px;
+height:1px;
+opacity:0;
+pointer-events:none;
+}
+
+</style></head><body><div id="inicio" class="page"><button class="boton-principal" onclick="abrirCarta()">
+FELIZ ANIVERSARIO<br>
+MI QUERIDA WENDY ❤️
+</button></div><div id="mensaje" class="page"><div class="contador" id="contador"></div><div class="carta">Gracias por este año a tu lado, por permitirme conocerte cada día más, por estar en mi mente las 24 horas del día y por todas las enseñanzas que me has dejado durante el tiempo que hemos compartido juntos.
+
+Quiero amarte, cuidarte y protegerte durante todo el camino que recorramos como compañeros de vida.
+
+Te amo mucho, mi niña ❤️
+
+</div><a class="drive"
+href="https://drive.google.com/drive/folders/1kluGfkUebDR-vBUbn-qWAxZXzvCatrxk"
+target="_blank">
+🎁 Nuestro rincón especial ❤️
+</a>
+
+</div><iframe
+id="musica"
+class="youtube"
+src=""
+allow="autoplay">
+</iframe><script>
+
+function abrirCarta(){
+
+document.getElementById("inicio").style.transform="translateX(-100%)";
+document.getElementById("mensaje").style.transform="translateX(0)";
+
+/*
+YouTube no permite reproducir audio puro fácilmente.
+Esto carga el video cuando se pulsa el botón.
+*/
+
+document.getElementById("musica").src=
+"https://www.youtube.com/embed/tGv7CUutzqU?autoplay=1&loop=1";
+
+explosionCorazones();
+
+}
+
+const inicio = new Date("2025-06-04T00:00:00");
+
+function actualizarContador(){
+
+const ahora = new Date();
+
+const diferencia = ahora - inicio;
+
+const dias = Math.floor(diferencia/(1000*60*60*24));
+
+const horas = Math.floor(
+(diferencia%(1000*60*60*24))
+/
+(1000*60*60)
+);
+
+const minutos = Math.floor(
+(diferencia%(1000*60*60))
+/
+(1000*60)
+);
+
+const segundos = Math.floor(
+(diferencia%(1000*60))
+/
+1000
+);
+
+document.getElementById("contador").innerHTML =
+"❤️ Tiempo juntos ❤️<br>" +
+dias + " días, " +
+horas + " horas, " +
+minutos + " minutos y " +
+segundos + " segundos";
+
+}
+
+setInterval(actualizarContador,1000);
+
+function crearPetalo(){
+
+const p=document.createElement("div");
+
+p.className="petalo";
+p.innerHTML="🌹";
+
+p.style.left=Math.random()*100+"vw";
+p.style.fontSize=(15+Math.random()*25)+"px";
+p.style.animationDuration=(5+Math.random()*8)+"s";
+
+document.body.appendChild(p);
+
+setTimeout(()=>p.remove(),12000);
+
+}
+
+setInterval(crearPetalo,250);
+
+function crearCorazon(){
+
+const c=document.createElement("div");
+
+c.className="corazon";
+c.innerHTML=["❤️","💕","💖","💘"][Math.floor(Math.random()*4)];
+
+c.style.left=Math.random()*100+"vw";
+c.style.fontSize=(15+Math.random()*30)+"px";
+c.style.animationDuration=(6+Math.random()*8)+"s";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),12000);
+
+}
+
+setInterval(crearCorazon,500);
+
+function crearBrillo(){
+
+const b=document.createElement("div");
+
+b.className="brillo";
+b.innerHTML="✨";
+
+b.style.left=Math.random()*100+"vw";
+b.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(b);
+
+setTimeout(()=>b.remove(),2500);
+
+}
+
+setInterval(crearBrillo,200);
+
+function explosionCorazones(){
+
+for(let i=0;i<50;i++){
+
+setTimeout(()=>{
+
+const h=document.createElement("div");
+
+h.innerHTML="❤️";
+h.style.position="absolute";
+h.style.left="50%";
+h.style.top="50%";
+h.style.fontSize="30px";
+
+document.body.appendChild(h);
+
+const x=(Math.random()-0.5)*800;
+const y=(Math.random()-0.5)*800;
+
+h.animate([
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${x}px,${y}px)`,opacity:0}
+],{
+duration:2500
+});
+
+setTimeout(()=>h.remove(),2500);
+
+},i*20);
+
+}
+
+}
+
+</script></body>
+</html>
